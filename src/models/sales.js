@@ -4,3 +4,4 @@ class Sales {
         this.batch_price = batch_price; 
     }
 }
+module.exports = Sales;

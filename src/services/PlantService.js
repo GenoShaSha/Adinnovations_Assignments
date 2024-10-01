@@ -9,11 +9,10 @@ class PlantService {
         // Apply min_height filter if provided
         if (min_height !== undefined) {
             if (isNaN(min_height) || min_height < 0) {
-                throw new Error("Invalid min_height parameter. Must be a positive float.");
+                throw new Error("Invalid min_height parameter. Must be equal or bigger than 0.");
             }
             plants = plants.filter(plant => plant.height >= min_height);
         }
-
         // Apply 'sold' filter if provided
         if (sold !== undefined) {
             plants = plants.filter(plant => {

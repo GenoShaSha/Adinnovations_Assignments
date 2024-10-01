@@ -1,12 +1,14 @@
 const Plant = require("../models/plants.js");
 const Batch = require("../models/batch.js");
-const { getPlants, getBatches } = require('./database/controller.js'); 
+const Sales = require("../models/sales.js")
+const { getPlants, getBatches, getSales } = require("../database/controller.js"); 
 
 
 class PlantRepository {
     constructor() {
         this.plants = getPlants().map(p => new Plant(p.plant_id, p.height, p.batch_id));
-        this.batches = getBatches().map(b => new Batch(b.batch_id, b.batch_status, b.planting_date, b.batch_price));
+        this.batches = getBatches().map(b => new Batch(b.batch_id, b.batch_status, b.planting_date));
+        this.sales = getSales().map(s => new Sales(s.batch_id,s.batch_price))
     }
 
 
