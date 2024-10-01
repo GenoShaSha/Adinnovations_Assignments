@@ -1,9 +1,11 @@
+const Sales = require("./sales");
+
 class Batch {
-    constructor(batch_id, status, planting_date, sales = null) {
+    constructor(batch_id, status, planting_date, sales = Sales) {
         this.batch_id = batch_id;
         this.status = status;
         this.planting_date = planting_date;
-        this.sales = sales;  // Store the Sales instance here
+        this.sales = sales;  
     }
 
     // Check if the batch is sold
