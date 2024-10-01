@@ -8,7 +8,8 @@ class PlantService {
 
         // Apply min_height filter if provided
         if (min_height !== undefined) {
-            if (isNaN(min_height) || min_height < 0) {
+            if (isNaN(min_height) || min_height <= 0) {
+                
                 throw new Error("Invalid min_height parameter. Must be equal or bigger than 0.");
             }
             plants = plants.filter(plant => plant.height >= min_height);
@@ -20,7 +21,6 @@ class PlantService {
                 return batch && batch.isSold() === sold;
             });
         }
-
         return plants;
     }
     // Get the price of a plant if it is sold

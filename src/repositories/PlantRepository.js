@@ -7,7 +7,7 @@ const { getPlants, getBatches, getSales } = require("../database/controller.js")
 class PlantRepository {
     constructor() {
         this.plants = getPlants().map(p => new Plant(p.plant_id, p.height, p.batch_id));
-        this.batches = getBatches().map(b => new Batch(b.batch_id, b.batch_status, b.planting_date));
+        this.batches = getBatches().map(b => new Batch(b.batch_id, b.status, b.planting_date));
         this.sales = getSales().map(s => new Sales(s.batch_id,s.batch_price))
     }
 
@@ -25,6 +25,12 @@ class PlantRepository {
     // Fetch batch by ID
     getBatchById(batch_id) {
         return this.batches.find(batch => batch.batch_id === batch_id);
+    }
+    getAllSales(){
+        return this.sales;
+    }
+    getSaleByBatchId(batch_id){
+        return this.sales.find(sale => sale.batch_id === batch_id);
     }
 }
 
