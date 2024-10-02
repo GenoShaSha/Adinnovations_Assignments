@@ -9,6 +9,7 @@ const plantRepository = new PlantRepository();
 const PlantService = require("./services/PlantService");
 const BatchService = require("./services/BatchService");
 const SaleService = require("./services/SaleService");
+const { type } = require('os');
 const plantService = new PlantService(plantRepository);
 const batchService = new BatchService(plantRepository);
 const saleService = new SaleService(plantRepository);
@@ -17,9 +18,16 @@ const saleService = new SaleService(plantRepository);
 // Endpoint #1
 app.get('/plants', (req, res) => {
   try {
-        const min_height = req.query.min_height !== undefined ? parseFloat(req.query.min_height): undefined;
+        const min_height = req.query.min_height !== undefined ? parseFloat(req.query.min_height): req.query.min_height;
         const sold = req.query.sold === 'true' ? true : (req.query.sold === 'false' ? false : undefined);
-  
+        if (min_height !== undefined) {
+            if (!Number.isInteger(min_height) || min_height < 1) {
+              return res.status(400).json({ 
+                error: "Invalid min_height parameter. Must be equal or bigger than 0." 
+              });
+            }
+          }
+
         const plants = plantService.getPlants({ min_height, sold });
 
     res.status(200).json(plants);

@@ -9,13 +9,10 @@ class PlantService {
     // Get plants with optional filters
     getPlants({ min_height, sold }) {
         let plants = this.plantRepository.getAllPlants();
-
-        if (min_height !== undefined) {
-            if (isNaN(min_height) || min_height <= 0) {
+            if (min_height < 0) {
                 throw new Error("Invalid min_height parameter. Must be equal or bigger than 0.");
             }
             plants = plants.filter(plant => plant.height >= min_height);
-        }
 
         if (sold !== undefined) {
             plants = plants.filter(plant => {
