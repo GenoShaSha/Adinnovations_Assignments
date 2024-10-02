@@ -10,7 +10,7 @@ class BatchService {
     getAllBatches() {
         return this.plantRepository.getAllBatches();
     }
-
+    // Get specific batch by Batch ID
     getBatchById(batch_id) {
         const batch = this.plantRepository.getBatchById(batch_id);
         if (!batch) {

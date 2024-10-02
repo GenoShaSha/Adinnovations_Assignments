@@ -15,7 +15,7 @@ const batchService = new BatchService(plantRepository);
 const saleService = new SaleService(plantRepository);
 
 
-// Endpoint #1
+// Endpoint #1 - get all plants
 app.get('/plants', (req, res) => {
   try {
         const min_height = req.query.min_height !== undefined ? parseFloat(req.query.min_height): req.query.min_height;
@@ -37,7 +37,7 @@ app.get('/plants', (req, res) => {
   }
 });
 
-// Endpoint #2
+// Endpoint #2 - get the plant price by Plant ID
 app.get('/plants/:plant_id/price', (req, res) => {
   try {
       const { plant_id } = req.params;
@@ -55,7 +55,7 @@ app.get('/plants/:plant_id/price', (req, res) => {
   }
 });
 
-// Bonus Endpoint
+// Bonus Endpoint - get all batches
 app.get('/batches', (req, res) => {
   try {
       const batches = batchService.getAllBatches();
@@ -65,7 +65,7 @@ app.get('/batches', (req, res) => {
   }
 });
 
-//BatchByID
+//BatchByID - get batch by Batch ID
 app.get('/batches/:batch_id', (req, res) => {
   try {
       const { batch_id } = req.params;
@@ -81,7 +81,7 @@ app.get('/batches/:batch_id', (req, res) => {
   }
 });
 
-//getSales
+//getSales - get all sales
 app.get('/sales', (req, res) => {
     try {
         const sales = saleService.getAllSales();
@@ -91,7 +91,7 @@ app.get('/sales', (req, res) => {
     }
   });
 
-  //getSaleByBatchID
+  //getSaleByBatchID - get sale by Batch ID
 app.get('/sales/:batch_id', (req, res) => {
     try {
         const { batch_id } = req.params;

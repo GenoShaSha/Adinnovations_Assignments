@@ -12,13 +12,15 @@ class PlantRepository {
     }
 
 
-    // Fetch all plants from the database
+    // Fetch all plants
     getAllPlants() {
         return this.plants;
     }
+    // Fetched Plant by ID
     getPlantById(plant_id) {
         return this.plants.find(plant => plant.plant_id === plant_id);
     }
+    // Fethe all bathches 
     getAllBatches(){
         return this.batches;
     }
@@ -26,9 +28,11 @@ class PlantRepository {
     getBatchById(batch_id) {
         return this.batches.find(batch => batch.batch_id === batch_id);
     }
+    // Fetched all Sales
     getAllSales(){
         return this.sales;
     }
+    //Fetched Sale by BatchID
     getSaleByBatchId(batch_id){
         return this.sales.find(sale => sale.batch_id === batch_id);
     }

@@ -20,7 +20,6 @@ class PlantService {
                 return batch && batch.isSold() === sold;
             });
         }
-
         return plants;
     }
 
@@ -30,7 +29,6 @@ class PlantService {
         if (!plant) {
             throw new Error("Plant not found.");
         }
-
         try {
             const batchPrice = this.batchService.getBatchPrice(plant.batch_id);
             return batchPrice;

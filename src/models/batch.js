@@ -12,7 +12,7 @@ class Batch {
     isSold() {
         return this.status === 'sold';
     }
-
+    
     // Get the price of the batch from the Sales class if sold
     getPrice() {
         if (this.isSold() && this.sales && this.sales.batch_id === this.batch_id) {

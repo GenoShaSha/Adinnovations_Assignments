@@ -1,11 +1,10 @@
 const BatchService = require('../src/services/BatchService');
-const SaleService = require('../src/services/SaleService'); // Mock this later
+const SaleService = require('../src/services/SaleService');
 const plantRepository = {
   getAllBatches: jest.fn(),
   getBatchById: jest.fn(),
 };
 
-// Mock SaleService module
 jest.mock('../src/services/SaleService');
 
 describe('BatchService', () => {
@@ -13,20 +12,15 @@ describe('BatchService', () => {
     let mockSaleService;
 
     beforeEach(() => {
-        // Set up SaleService and mock functions
         mockSaleService = {
             getSaleByBatchId: jest.fn(),
         };
-
-        // Mock SaleService instantiation
         SaleService.mockImplementation(() => mockSaleService);
-
-        // Create BatchService instance with the mocked plantRepository
         batchService = new BatchService(plantRepository);
     });
 
     afterEach(() => {
-        jest.clearAllMocks(); // Clear all mocks after each test
+        jest.clearAllMocks(); 
     });
 
     it('should return all batches', () => {
@@ -81,6 +75,6 @@ describe('BatchService', () => {
             batchService.getBatchPrice('b1');
         }).toThrow('Batch is not sold.');
         expect(plantRepository.getBatchById).toHaveBeenCalledWith('b1');
-        expect(mockSaleService.getSaleByBatchId).not.toHaveBeenCalled(); // SaleService shouldn't be called
+        expect(mockSaleService.getSaleByBatchId).not.toHaveBeenCalled(); 
     });
 });
